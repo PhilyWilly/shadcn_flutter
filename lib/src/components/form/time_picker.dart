@@ -776,7 +776,11 @@ class _DurationPickerDialogState extends State<DurationPickerDialog> {
                     localizations.durationDay,
                   ),
                 ),
-              if (widget.showDays) _buildSeparator(context),
+              if (widget.showDays &&
+                  (widget.showHours ||
+                      widget.showMinutes ||
+                      widget.showSeconds))
+                _buildSeparator(context),
               if (widget.showHours)
                 Expanded(
                   child: _buildInput(
@@ -785,7 +789,8 @@ class _DurationPickerDialogState extends State<DurationPickerDialog> {
                     localizations.durationHour,
                   ),
                 ),
-              if (widget.showHours) _buildSeparator(context),
+              if (widget.showHours && (widget.showHours || widget.showMinutes))
+                _buildSeparator(context),
               if (widget.showMinutes)
                 Expanded(
                   child: _buildInput(
@@ -794,7 +799,8 @@ class _DurationPickerDialogState extends State<DurationPickerDialog> {
                     localizations.durationMinute,
                   ),
                 ),
-              if (widget.showMinutes) _buildSeparator(context),
+              if (widget.showMinutes && widget.showSeconds)
+                _buildSeparator(context),
               if (widget.showSeconds)
                 Expanded(
                   child: _buildInput(
